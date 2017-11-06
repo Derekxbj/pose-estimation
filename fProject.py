@@ -40,11 +40,11 @@ def fProject(x, P_M, K):
 	Rz = np.array([[cos(az),-sin(az),0],
 				   [sin(az),cos(az),0],
 				   [0,0,1]])
-	R = Rz*Ry*Rx
+	R = (Rz.dot(Ry)).dot(Rx)
 
 
 	# Extrinsic camera matrix (rotation and translation)
-	T = np.array([[0],[0],[23]])
+	T = np.array([tx , ty, tz])
 	Mext = np.hstack((R,T))
 
 
@@ -55,6 +55,7 @@ def fProject(x, P_M, K):
 	ph = ph[:2,:]
 
 	p = ph.reshape((8,1), order='F')
+	# p = p.round(decimals = 100)
 
 	return p
 
