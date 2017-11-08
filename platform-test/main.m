@@ -2,7 +2,7 @@ clear all;
 close all;
 % The main progream
 while(true)
-    
+tic;
 try
     I = imread('image.jpg');
     imshow(I,[]);
@@ -90,5 +90,6 @@ catch
     disp("Can not implement pose estimation!!");
     continue;
 end
-
+toc;
+break;
 end
