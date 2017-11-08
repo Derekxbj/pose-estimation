@@ -1,5 +1,6 @@
 from fProject import *
 import numpy as np
+from numpy import linalg as LA
 
 
 def leastSquareFit(x, P_M, K, y0):
@@ -30,6 +31,9 @@ def leastSquareFit(x, P_M, K, y0):
 		pinvJ = np.linalg.pinv(J)
 
 		dx = pinvJ.dot(dy)
+
+		if abs( LA.norm(dx)/LA.norm(x)) < 1e-6:
+			break
 
 		x = x + dx
 
